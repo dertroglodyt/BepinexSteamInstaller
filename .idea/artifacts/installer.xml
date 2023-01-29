@@ -5,6 +5,7 @@
       <element id="directory" name="BepinexSteamInstaller">
         <element id="artifact" artifact-name="installer:jar" />
         <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.csv" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/installer.bat" />
       </element>
     </root>
   </artifact>

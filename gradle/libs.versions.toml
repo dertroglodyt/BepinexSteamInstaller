@@ -1,0 +1,75 @@
+[versions]
+#versioncheck = "0.44.0"
+
+kotlin = "1.8.20"
+kotlinCoroutines = "1.6.4"
+kotlinReflect = "1.8.20"
+kapt = "1.8.20"
+
+slf4j = "1.7.32"
+junit_jupiter_api = "5.9.1"
+kotest_runner_junit5 = "5.5.4"
+
+json = "1.4.1"
+
+kweb_core = "1.1.5"
+exposed = "0.41.1"
+h2 = "2.1.214"
+
+jmonkey = "3.3.2-stable"
+
+kotlin_big_math = "2.3.0"
+measure = "2022-09-22"
+math = "2022-11-21"
+tools = "2022-11-08b"
+
+
+#[plugins]
+#versioncheck = { id = "com.github.ben-manes.versions", version.ref = "versioncheck" }
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinReflect" }
+
+test-jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit_jupiter_api" }
+test-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest_runner_junit5" }
+test-runnerProperty = { module = "io.kotest:kotest-property", version.ref = "kotest_runner_junit5" }
+
+json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "json" }
+
+measure-core = { module = "de.hdc.measure:measure", version.ref = "measure" }
+measure-bigmath = { module = "ch.obermuhlner:big-math", version.ref = "kotlin_big_math" }
+measure-bigmathKotlin = { module = "ch.obermuhlner:kotlin-big-math", version.ref = "kotlin_big_math" }
+
+math = { module = "de.hdc.math:math", version.ref = "math" }
+tools = { module = "de.hdc.tools:tools", version.ref = "tools" }
+
+scripting-kotlinCompilerEmbeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
+scritping-compilerEmbeddable = { module = "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable", version.ref = "kotlin" }
+scripting-util = { module = "org.jetbrains.kotlin:kotlin-script-util", version.ref = "kotlin" }
+scripting-runtime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version.ref = "kotlin" }
+
+kwebCore = { module = "com.github.kwebio:kweb-core", version.ref = "kweb_core" }
+
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+
+jmonkey-core = { module = "org.jmonkeyengine:jme3-core", version.ref = "jmonkey" }
+jmonkey-desktop = { module = "org.jmonkeyengine:jme3-desktop", version.ref = "jmonkey" }
+jmonkey-lwjgl = { module = "org.jmonkeyengine:jme3-lwjgl", version.ref = "jmonkey" }
+jmonkey-jbullet = { module = "org.jmonkeyengine:jme3-bullet", version.ref = "jmonkey" }
+jmonkey-jbulletnative = { module = "org.jmonkeyengine:jme3-bullet-native", version.ref = "jmonkey" }
+jmonkey-jogg = { module = "org.jmonkeyengine:jme3-jogg", version.ref = "jmonkey" }
+jmonkey-plugins = { module = "org.jmonkeyengine:jme3-plugins", version.ref = "jmonkey" }
+jmonkey-blender = { module = "org.jmonkeyengine:jme3-blender", version.ref = "jmonkey" }
+
+[bundles]
+kotlin = ["kotlin-stdlib", "kotlin-coroutines", "kotlin-reflect"]
+testing = ["test-jupiter", "test-runner", "test-runnerProperty"]
+measure = ["measure-core", "measure-bigmath", "measure-bigmathKotlin"]
+scripting = ["scripting-kotlinCompilerEmbeddable", "scritping-compilerEmbeddable", "scripting-util", "scripting-runtime"]
+exposed = ["exposed-core", "exposed-dao", "exposed-jdbc"]
+jmonkey = ["jmonkey-core", "jmonkey-desktop", "jmonkey-lwjgl", "jmonkey-jbullet", "jmonkey-jbulletnative", "jmonkey-jogg", "jmonkey-plugins", "jmonkey-blender"]

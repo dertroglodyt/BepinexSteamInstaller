@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="installer">
+    <output-path>$PROJECT_DIR$/out/artifacts/installer</output-path>
+    <root id="root">
+      <element id="directory" name="BepinexSteamInstaller">
+        <element id="artifact" artifact-name="installer:jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.csv" />
+      </element>
+    </root>
+  </artifact>
+</component>

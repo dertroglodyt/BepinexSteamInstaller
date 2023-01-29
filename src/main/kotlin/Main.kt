@@ -7,10 +7,6 @@ import kotlin.io.path.createTempDirectory
 import kotlin.io.path.fileSize
 import kotlin.system.exitProcess
 
-private val programsDir = System.getenv("ProgramFiles(X86)")
-private val steamDir = "$programsDir/Steam/steamapps/common/"
-private val workshopDir = "$programsDir/Steam/steamapps/workshop/content/"
-
 private object Main
 
 /**
@@ -18,19 +14,25 @@ private object Main
  */
 fun main(args: Array<String>) {
     // read know games list
-    val gameMap = Main.javaClass.getResource("/games.csv").openStream().bufferedReader()
-        .readLines().associate { line ->
+    val steamapps = File("config.csv").bufferedReader().readLine()
+    val github = File("config.csv").bufferedReader()
+        .readLines().drop(1).first()
+    val gameMap = File("config.csv").bufferedReader()
+        .readLines().drop(2).associate { line ->
             val items = line.split(",")
-            items[0] to (items[1] to items[2])
+            items[0] to items[1]
         }
 
+    val steamDir = "$steamapps/common/"
+    val workshopDir = "$steamapps/workshop/content/"
+
     if (args.size != 1) {
-        println("Usage: install <Game>\nExample: install \"c:/Program Files/Steam/steamapps/common/<game dir>\"")
+        println("Usage: install <Game>|<Full path to game>\n Example: install Stationeers\n Example: install \"c:/Program Files/Steam/steamapps/common/<game dir>\"")
         println("Known games: ${gameMap.keys}")
         exitProcess(-1)
     }
     val game = args[0].replace('\\', '/').substringAfterLast("/")
-    val gameID = gameMap[game]?.first ?: run {
+    val gameID = gameMap[game] ?: run {
         println("Unknown game $game!")
         println("Known games: ${gameMap.keys}")
         exitProcess(-1)
@@ -49,7 +51,7 @@ fun main(args: Array<String>) {
 
     println("Downloading latest BepInEx from Github...")
     val zip = File(createTempDirectory().toFile(), "bepinex.zip")
-    BufferedInputStream(URL((gameMap[game])!!.second).openStream()).use { Files.copy(it, zip.toPath()) }
+    BufferedInputStream(URL(github).openStream()).use { Files.copy(it, zip.toPath()) }
     println("Downloaded ${zip.toPath().fileSize()} bytes to ${zip.absolutePath}.")
 
     println("Unzipping downloaded file to \"${gameDir.absolutePath}${File.separator}BepInEx\"...")
